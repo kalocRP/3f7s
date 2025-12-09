@@ -17,6 +17,10 @@ body,html{height:100%;width:100%;font-family:Arial,sans-serif;overflow:hidden;ba
 .badges img:hover{transform:scale(1.5);filter:drop-shadow(0 0 25px #0ff);}
 @keyframes glowBadge{from{filter:drop-shadow(0 0 5px #0ff);}to{filter:drop-shadow(0 0 25px #0ff);}}
 .bio{font-size:16px;opacity:0.85;margin-top:5px;}
+.roblox-link{margin-top:10px;font-size:14px;opacity:0.85;display:flex;align-items:center;gap:5px;}
+.roblox-link a{display:flex;align-items:center;color:#0ff;text-decoration:none;transition:0.3s;}
+.roblox-link a img{width:24px;height:24px;margin-right:5px;}
+.roblox-link a:hover{text-decoration:underline;}
 .links{display:flex;gap:18px;margin-top:20px;}
 .links img{width:42px;cursor:pointer;transition:0.3s;}
 .links img:hover{transform:scale(1.3);filter:drop-shadow(0 0 20px #0ff);}
@@ -26,6 +30,7 @@ body,html{height:100%;width:100%;font-family:Arial,sans-serif;overflow:hidden;ba
 .trail{position:absolute;width:6px;height:6px;border-radius:50%;pointer-events:none;background:#0ff;opacity:0.9;mix-blend-mode:lighten;box-shadow:0 0 5px #0ff,0 0 10px #0ff;}
 .sparkle{position:absolute;width:6px;height:6px;border-radius:50%;background:#0ff;opacity:0.7;pointer-events:none;animation:sparkleAnim 1s linear infinite;}
 @keyframes sparkleAnim{0%{transform:scale(1);opacity:0.7;}50%{transform:scale(1.5);opacity:0.3;}100%{transform:scale(1);opacity:0.7;}}
+.decoration{position:absolute;width:150px;height:150px;pointer-events:none;z-index:5;}
 </style>
 </head>
 <body>
@@ -36,6 +41,11 @@ body,html{height:100%;width:100%;font-family:Arial,sans-serif;overflow:hidden;ba
   <img src="pfp.png" class="pfp">
   <h2>3f7s</h2>
   <p class="bio">Exhausted day.</p>
+  <div class="roblox-link">
+    <a href="https://www.roblox.com/users/31037738/profile" target="_blank">
+      <img src="roblox.png" alt="Roblox">View my Roblox Profile
+    </a>
+  </div>
 
   <div class="badges">
     <img src="staff.png" alt="Staff">
@@ -56,6 +66,10 @@ body,html{height:100%;width:100%;font-family:Arial,sans-serif;overflow:hidden;ba
   <audio id="bgAudio" src="your-audio.mp3" loop></audio>
 </div>
 
+<!-- Floating Decorations -->
+<img src="decoration1.png" class="decoration" id="deco1">
+<img src="decoration2.png" class="decoration" id="deco2">
+
 <div id="customCursor"></div>
 
 <script>
@@ -69,41 +83,68 @@ overlay.addEventListener('click', () => {
   overlay.style.opacity = '0';
   setTimeout(() => {
     overlay.style.display = 'none';
-    profile.classList.add('show'); // smooth fade-in
-
-    // Play audio after user click
+    profile.classList.add('show');
     audio.volume = 0.5;
-    audio.play().catch(e => console.log("Audio blocked:", e));
-
-    // Increment profile views
+    audio.play().catch(e=>console.log("Audio blocked:", e));
     viewCount++;
     document.getElementById('viewCount').innerText = viewCount.toLocaleString();
-  }, 300);
+  },300);
 });
 
 // Custom cursor + trail
 document.addEventListener('mousemove', e => {
   const cursor = document.getElementById('customCursor');
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-
+  cursor.style.left = e.clientX+'px';
+  cursor.style.top = e.clientY+'px';
   const t = document.createElement('div');
   t.classList.add('trail');
-  t.style.left = e.pageX + 'px';
-  t.style.top = e.pageY + 'px';
+  t.style.left = e.pageX+'px';
+  t.style.top = e.pageY+'px';
   document.body.appendChild(t);
-  setTimeout(() => t.remove(), 600);
+  setTimeout(()=>t.remove(),600);
 });
 
 // Sparkles on profile
 profile.addEventListener('mousemove', e => {
   const s = document.createElement('div');
   s.classList.add('sparkle');
-  s.style.left = (e.clientX + Math.random()*30-15) + 'px';
-  s.style.top = (e.clientY + Math.random()*30-15) + 'px';
+  s.style.left=(e.clientX+Math.random()*30-15)+'px';
+  s.style.top=(e.clientY+Math.random()*30-15)+'px';
   document.body.appendChild(s);
-  setTimeout(() => s.remove(), 800);
+  setTimeout(()=>s.remove(),800);
 });
+
+// Floating decorations movement
+const deco1 = document.getElementById('deco1');
+const deco2 = document.getElementById('deco2');
+
+let deco1X = Math.random()*window.innerWidth;
+let deco1Y = Math.random()*window.innerHeight;
+let deco2X = Math.random()*window.innerWidth;
+let deco2Y = Math.random()*window.innerHeight;
+
+let speed1 = {x:0.3, y:0.2};
+let speed2 = {x:0.2, y:0.3};
+
+function animateDeco(){
+  deco1X += speed1.x;
+  deco1Y += speed1.y;
+  if(deco1X>window.innerWidth || deco1X<0) speed1.x*=-1;
+  if(deco1Y>window.innerHeight || deco1Y<0) speed1.y*=-1;
+  deco1.style.left = deco1X+'px';
+  deco1.style.top = deco1Y+'px';
+
+  deco2X += speed2.x;
+  deco2Y += speed2.y;
+  if(deco2X>window.innerWidth || deco2X<0) speed2.x*=-1;
+  if(deco2Y>window.innerHeight || deco2Y<0) speed2.y*=-1;
+  deco2.style.left = deco2X+'px';
+  deco2.style.top = deco2Y+'px';
+
+  requestAnimationFrame(animateDeco);
+}
+animateDeco();
+
 </script>
 
 </body>
