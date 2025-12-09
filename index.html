@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3f7s Profile</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background: url('background.jpg') no-repeat center/cover fixed;
+        filter: brightness(1.05);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+        cursor: url('my-cursor.cur'), auto;
+    }
+
+    /* Floating Particles */
+    .particle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: rgba(255,255,255,0.5);
+        border-radius: 50%;
+        animation: float 10s linear infinite;
+    }
+    @keyframes float {
+        0% { transform: translateY(0) translateX(0); opacity: 0.5; }
+        50% { transform: translateY(-200px) translateX(50px); opacity: 1; }
+        100% { transform: translateY(0) translateX(0); opacity: 0.5; }
+    }
+
+    /* Card */
+    .card {
+        width: 450px;
+        padding: 30px;
+        border-radius: 25px;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        box-shadow: 0 0 30px rgba(255,255,255,0.3);
+        color: white;
+        text-align: center;
+        border: 2px solid rgba(255,255,255,0.2);
+        position: relative;
+        z-index: 1;
+    }
+
+    .pfp {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid rgba(255,255,255,0.7);
+        margin-bottom: 15px;
+    }
+
+    .bio {
+        margin: 10px 0 10px 0;
+        font-size: 14px;
+        color: #ddd;
+        text-align: center;
+        line-height: 1.4;
+    }
+
+    /* Profile Views Eye */
+    .profile-views {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+        position: relative;
+    }
+
+    .profile-views img {
+        width: 20px;
+        vertical-align: middle;
+        margin-right: 6px;
+        filter: drop-shadow(0 0 4px white);
+    }
+
+    .profile-views:hover::after {
+        content: "Profile Views";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    /* Badges */
+    .badges {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 15px;
+        position: relative;
+    }
+
+    .badge {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        background: rgba(0,0,0,0.4);
+        box-shadow: 0 0 8px rgba(255,255,255,0.2);
+        cursor: pointer;
+        transition: 0.25s, box-shadow 0.25s;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 3s infinite alternate;
+    }
+
+    .badge img {
+        width: 32px;
+        height: 32px;
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 8px rgba(255,255,255,0.2); }
+        50% { box-shadow: 0 0 16px rgba(255,255,255,0.4); }
+        100% { box-shadow: 0 0 8px rgba(255,255,255,0.2); }
+    }
+
+    /* Badge Glow */
+    .badge[data-title="Staff"]:hover { animation: glowStaff 1s infinite alternate; }
+    .badge[data-title="Verified"]:hover { animation: glowVerified 1s infinite alternate; }
+    .badge[data-title="Premium"]:hover { animation: glowPremium 1s infinite alternate; }
+
+    @keyframes glowStaff {
+        0% { box-shadow: 0 0 12px #ff4d4d, 0 0 20px #ff9999; }
+        50% { box-shadow: 0 0 20px #ff6666, 0 0 30px #ffb3b3; }
+        100% { box-shadow: 0 0 28px #ff8080, 0 0 40px #ffc0c0; }
+    }
+
+    @keyframes glowVerified {
+        0% { box-shadow: 0 0 12px #4d94ff, 0 0 20px #99c2ff; }
+        50% { box-shadow: 0 0 20px #6699ff, 0 0 30px #b3ccff; }
+        100% { box-shadow: 0 0 28px #80b3ff, 0 0 40px #c0d9ff; }
+    }
+
+    @keyframes glowPremium {
+        0% { box-shadow: 0 0 12px #ffd700, 0 0 20px #fff099; }
+        50% { box-shadow: 0 0 20px #ffe033, 0 0 30px #fff5a8; }
+        100% { box-shadow: 0 0 28px #ffeb66, 0 0 40px #fff9b3; }
+    }
+
+    .badge:hover::after {
+        content: attr(data-title);
+        position: absolute;
+        bottom: -28px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.8);
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    /* Links */
+    .links {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .links img {
+        width: 40px;
+        height: 40px;
+        transition: 0.25s;
+        cursor: pointer;
+    }
+
+    .links img:hover {
+        transform: scale(1.3);
+        filter: drop-shadow(0 0 12px white);
+    }
+
+    /* Audio */
+    audio {
+        margin-top: 20px;
+        width: 80%;
+        outline: none;
+    }
+
+    /* Badge sparkle */
+    .badge::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
+        opacity: 0;
+        animation: sparkle 2s infinite;
+    }
+
+    @keyframes sparkle {
+        0%, 100% { opacity: 0; transform: scale(0); }
+        50% { opacity: 1; transform: scale(1); }
+    }
+</style>
+</head>
+<body>
+
+<!-- Particles -->
+<div class="particle" style="top:20%; left:10%; animation-delay:0s;"></div>
+<div class="particle" style="top:50%; left:80%; animation-delay:2s;"></div>
+<div class="particle" style="top:70%; left:30%; animation-delay:4s;"></div>
+<div class="particle" style="top:30%; left:60%; animation-delay:6s;"></div>
+
+<div class="card">
+    <img src="pfp.png" class="pfp" />
+    <h2>3f7s</h2>
+
+    <p class="bio">Exhausted day.</p>
+
+    <!-- Profile Views Eye -->
+    <div class="profile-views">
+        <img src="eye.png" alt="Profile Views">
+        <span id="view-count">0</span>
+    </div>
+
+    <!-- Badges -->
+    <div class="badges">
+        <div class="badge" data-title="Staff">
+            <img src="staff.png" alt="Staff">
+        </div>
+        <div class="badge" data-title="Verified">
+            <img src="verified.gif" alt="Verified">
+        </div>
+        <div class="badge" data-title="Premium">
+            <img src="premium.png" alt="Premium">
+        </div>
+    </div>
+
+    <!-- Links -->
+    <div class="links">
+        <img src="discord-logo.png" alt="Discord">
+        <img src="custom-logo.gif" alt="Website">
+    </div>
+
+    <!-- Audio -->
+    <audio id="bg-audio" controls autoplay loop muted controlsList="nodownload noplaybackrate">
+        <source src="your-audio.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+
+<script>
+  // Audio autoplay unmute on click
+  window.addEventListener('click', () => {
+    const audio = document.getElementById('bg-audio');
+    if(audio.paused) {
+        audio.muted = false;
+        audio.play().catch(()=>console.log("Autoplay blocked"));
+    }
+  });
+
+  // Cursor trail
+  const trail = [];
+  const colors = ["#ff4d4d", "#4d94ff", "#ffd700", "#ff66ff"];
+  document.addEventListener("mousemove", (e) => {
+    const dot = document.createElement("div");
+    dot.style.position = "fixed";
+    dot.style.width = "10px";
+    dot.style.height = "10px";
+    dot.style.borderRadius = "50%";
+    dot.style.background = colors[Math.floor(Math.random()*colors.length)];
+    dot.style.left = e.clientX + "px";
+    dot.style.top = e.clientY + "px";
+    dot.style.pointerEvents = "none";
+    dot.style.zIndex = 9999;
+    dot.style.opacity = 0.8;
+    document.body.appendChild(dot);
+    trail.push(dot);
+    if(trail.length > 15) {
+      const old = trail.shift();
+      old.remove();
+    }
+  });
+
+  // Profile Views counter (per device)
+  const viewCountEl = document.getElementById("view-count");
+  let views = localStorage.getItem("profileViews") || 0;
+  views = parseInt(views) + 1;
+  localStorage.setItem("profileViews", views);
+  viewCountEl.textContent = views;
+</script>
+
+</body>
+</html>
