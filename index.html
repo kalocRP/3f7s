@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>3f7s Profile</title>
+<link rel="icon" type="image/png" href="guns-logo.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body,html{height:100%;width:100%;font-family:Arial,sans-serif;overflow:hidden;background:url('background.jpg') no-repeat center/cover;background-size:cover;cursor:none;}
@@ -17,13 +18,9 @@ body,html{height:100%;width:100%;font-family:Arial,sans-serif;overflow:hidden;ba
 .badges img:hover{transform:scale(1.5);filter:drop-shadow(0 0 25px #0ff);}
 @keyframes glowBadge{from{filter:drop-shadow(0 0 5px #0ff);}to{filter:drop-shadow(0 0 25px #0ff);}}
 .bio{font-size:16px;opacity:0.85;margin-top:5px;}
-.roblox-link{margin-top:10px;font-size:14px;opacity:0.85;display:flex;align-items:center;gap:5px;}
-.roblox-link a{display:flex;align-items:center;color:#0ff;text-decoration:none;transition:0.3s;}
-.roblox-link a img{width:24px;height:24px;margin-right:5px;}
-.roblox-link a:hover{text-decoration:underline;}
-.links{display:flex;gap:18px;margin-top:20px;}
-.links img{width:42px;cursor:pointer;transition:0.3s;}
-.links img:hover{transform:scale(1.3);filter:drop-shadow(0 0 20px #0ff);}
+.profile-links{display:flex;gap:15px;justify-content:center;margin-top:15px;}
+.profile-links img{width:40px;height:40px;transition:transform 0.3s;cursor:pointer;}
+.profile-links img:hover{transform:scale(1.3);}
 #profileViews{display:flex;align-items:center;gap:8px;margin-top:15px;font-size:14px;opacity:0.8;}
 #profileViews img{width:20px;}
 #customCursor{position:fixed;top:0;left:0;width:20px;height:20px;background:cyan;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:transform 0.05s ease;z-index:1000;box-shadow:0 0 10px cyan,0 0 20px cyan,0 0 30px cyan;}
@@ -41,9 +38,13 @@ body,html{height:100%;width:100%;font-family:Arial,sans-serif;overflow:hidden;ba
   <img src="pfp.png" class="pfp">
   <h2>3f7s</h2>
   <p class="bio">Exhausted day.</p>
-  <div class="roblox-link">
+
+  <div class="profile-links">
+    <a href="https://guns.lol/3f7s" target="_blank">
+      <img src="guns-logo.png" alt="Guns.lol">
+    </a>
     <a href="https://www.roblox.com/users/31037738/profile" target="_blank">
-      <img src="roblox.png" alt="Roblox">View my Roblox Profile
+      <img src="roblox-logo.png" alt="Roblox">
     </a>
   </div>
 
@@ -51,11 +52,6 @@ body,html{height:100%;width:100%;font-family:Arial,sans-serif;overflow:hidden;ba
     <img src="staff.png" alt="Staff">
     <img src="verified.gif" alt="Verified">
     <img src="premium.png" alt="Premium">
-  </div>
-
-  <div class="links">
-    <a href="#"><img src="discord-logo.png" alt="Discord"></a>
-    <a href="#"><img src="custom-logo.gif" alt="Website"></a>
   </div>
 
   <div id="profileViews">
