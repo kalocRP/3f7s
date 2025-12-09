@@ -5,97 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>3f7s Profile</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body, html {
-  height:100%;
-  width:100%;
-  font-family: Arial, sans-serif;
-  overflow:hidden;
-  background: url('background.jpg') no-repeat center/cover;
-  background-size: cover;
-  cursor: none;
-}
-
-/* Particle background */
-#particles { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; }
-
-/* Click-to-enter overlay */
-#overlay {
-  position:fixed; top:0; left:0; width:100%; height:100%;
-  backdrop-filter: blur(12px); background: rgba(0,0,0,0.4);
-  display:flex; justify-content:center; align-items:center;
-  cursor:pointer; z-index:10;
-}
-#overlay h1 { color:white; font-size:28px; text-align:center; }
-
-/* Profile card */
-#profile {
-  position:relative; z-index:1; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; height:100vh;
-  color:white; text-align:center; opacity:0; transition: opacity 1.5s ease;
-  padding: 30px;
-  border-radius: 25px;
-  background: rgba(0,0,0,0.3);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 30px rgba(0,255,255,0.5);
-  transition: all 0.5s ease;
-}
-#profile:hover { box-shadow: 0 0 60px rgba(0,255,255,1); transform: scale(1.03); }
-
-/* Profile picture */
-.pfp { width:120px; border-radius:50%; border:3px solid rgba(0,255,255,0.7); margin-bottom:15px; }
-
-/* Badges */
-.badges { display:flex; gap:12px; margin:20px 0; position:relative; }
-.badges img {
-  width:50px;
-  transition: all 0.4s;
-  animation: glowBadge 2s infinite alternate;
-}
-.badges img:hover { transform: scale(1.5); filter: drop-shadow(0 0 25px #0ff); }
-@keyframes glowBadge { from { filter: drop-shadow(0 0 5px #0ff); } to { filter: drop-shadow(0 0 25px #0ff); } }
-
-/* Bio */
-.bio { font-size:16px; opacity:0.85; margin-top:5px; }
-
-/* Links */
-.links { display:flex; gap:18px; margin-top:20px; }
-.links img { width:42px; cursor:pointer; transition:0.3s; }
-.links img:hover { transform: scale(1.3); filter: drop-shadow(0 0 20px #0ff); }
-
-/* Profile Views */
-#profileViews { display:flex; align-items:center; gap:8px; margin-top:15px; font-size:14px; opacity:0.8; }
-#profileViews img { width:20px; }
-
-/* Cursor trail */
-.trail { position:absolute; width:6px; height:6px; border-radius:50%; pointer-events:none; background: #0ff; opacity:0.9; mix-blend-mode: lighten; }
-
-/* Sparkle effect on profile card */
-.sparkle {
-  position: absolute;
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #0ff;
-  opacity: 0.7;
-  pointer-events: none;
-  animation: sparkleAnim 1s linear infinite;
-}
-@keyframes sparkleAnim { 0% { transform: scale(1); opacity:0.7; } 50% { transform: scale(1.5); opacity:0.3; } 100% { transform: scale(1); opacity:0.7; } }
-
-/* Mobile responsiveness */
-@media screen and (max-width: 600px) {
-  #profile { padding: 20px; }
-  .pfp { width: 90px; }
-  .badges img { width: 35px; }
-  .links img { width: 30px; }
-  .bio { font-size:14px; }
-  #overlay h1 { font-size:22px; }
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+body,html{height:100%;width:100%;font-family:Arial,sans-serif;overflow:hidden;background:url('background.jpg') no-repeat center/cover;background-size:cover;cursor:none;}
+#overlay{position:fixed;top:0;left:0;width:100%;height:100%;backdrop-filter:blur(12px);background:rgba(0,0,0,0.4);display:flex;justify-content:center;align-items:center;cursor:pointer;z-index:10;transition:opacity 1s ease;}
+#overlay h1{color:white;font-size:28px;text-align:center;}
+#profile{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;color:white;text-align:center;padding:30px;border-radius:25px;background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);box-shadow:0 0 30px rgba(0,255,255,0.5);opacity:0;transition:opacity 1.5s ease;pointer-events:none;}
+#profile.show{opacity:1;pointer-events:all;}
+.pfp{width:120px;border-radius:50%;border:3px solid rgba(0,255,255,0.7);margin-bottom:15px;}
+.badges{display:flex;gap:12px;margin:20px 0;}
+.badges img{width:50px;transition:all 0.4s;animation:glowBadge 2s infinite alternate;}
+.badges img:hover{transform:scale(1.5);filter:drop-shadow(0 0 25px #0ff);}
+@keyframes glowBadge{from{filter:drop-shadow(0 0 5px #0ff);}to{filter:drop-shadow(0 0 25px #0ff);}}
+.bio{font-size:16px;opacity:0.85;margin-top:5px;}
+.links{display:flex;gap:18px;margin-top:20px;}
+.links img{width:42px;cursor:pointer;transition:0.3s;}
+.links img:hover{transform:scale(1.3);filter:drop-shadow(0 0 20px #0ff);}
+#profileViews{display:flex;align-items:center;gap:8px;margin-top:15px;font-size:14px;opacity:0.8;}
+#profileViews img{width:20px;}
+#customCursor{position:fixed;top:0;left:0;width:20px;height:20px;background:cyan;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:transform 0.05s ease;z-index:1000;box-shadow:0 0 10px cyan,0 0 20px cyan,0 0 30px cyan;}
+.trail{position:absolute;width:6px;height:6px;border-radius:50%;pointer-events:none;background:#0ff;opacity:0.9;mix-blend-mode:lighten;box-shadow:0 0 5px #0ff,0 0 10px #0ff;}
+.sparkle{position:absolute;width:6px;height:6px;border-radius:50%;background:#0ff;opacity:0.7;pointer-events:none;animation:sparkleAnim 1s linear infinite;}
+@keyframes sparkleAnim{0%{transform:scale(1);opacity:0.7;}50%{transform:scale(1.5);opacity:0.3;}100%{transform:scale(1);opacity:0.7;}}
 </style>
 </head>
 <body>
-
-<canvas id="particles"></canvas>
 
 <div id="overlay"><h1>Click anywhere to enter</h1></div>
 
@@ -117,84 +50,59 @@ body, html {
 
   <div id="profileViews">
     <img src="eye.png" alt="Eye">
-    <span id="viewCount">0</span> Profile Views
+    <span id="viewCount">11373</span> Profile Views
   </div>
 
-  <audio autoplay loop controls>
-    <source src="your-audio.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+  <audio id="bgAudio" src="your-audio.mp3" loop></audio>
 </div>
 
+<div id="customCursor"></div>
+
 <script>
-/* Click-to-enter fade-in */
+// Overlay click → smooth fade-in profile & audio
 const overlay = document.getElementById('overlay');
 const profile = document.getElementById('profile');
+const audio = document.getElementById('bgAudio');
+let viewCount = 11373;
+
 overlay.addEventListener('click', () => {
-  overlay.style.transition = 'opacity 1.5s ease';
   overlay.style.opacity = '0';
   setTimeout(() => {
     overlay.style.display = 'none';
-    profile.style.opacity = '1';
-    incrementViews();
-  }, 1500);
+    profile.classList.add('show'); // smooth fade-in
+
+    // Play audio after user click
+    audio.volume = 0.5;
+    audio.play().catch(e => console.log("Audio blocked:", e));
+
+    // Increment profile views
+    viewCount++;
+    document.getElementById('viewCount').innerText = viewCount.toLocaleString();
+  }, 300);
 });
 
-/* Particle background */
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-let particlesArray = [];
-class Particle { constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.size=Math.random()*2+1; this.speedX=Math.random()*1-0.5; this.speedY=Math.random()*1-0.5; } update(){ this.x+=this.speedX; this.y+=this.speedY; if(this.x>canvas.width) this.x=0; if(this.x<0) this.x=canvas.width; if(this.y>canvas.height) this.y=0; if(this.y<0) this.y=canvas.height; } draw(){ ctx.fillStyle='rgba(0,255,255,0.6)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); } }
-function initParticles(){ particlesArray=[]; let count = window.innerWidth < 600 ? 80 : 150; for(let i=0;i<count;i++){ particlesArray.push(new Particle()); } }
-function animate(){ ctx.clearRect(0,0,canvas.width,canvas.height); particlesArray.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animate); }
-window.addEventListener('resize', ()=>{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; initParticles(); });
-initParticles();
-animate();
+// Custom cursor + trail
+document.addEventListener('mousemove', e => {
+  const cursor = document.getElementById('customCursor');
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
 
-/* Profile view counter (animated) */
-function incrementViews(){
-  let views = localStorage.getItem('profileViews') || 0;
-  views = parseInt(views) + 1;
-  localStorage.setItem('profileViews', views);
-  animateViewCounter(views);
-}
-
-function animateViewCounter(target){
-  const display = document.getElementById('viewCount');
-  let current = parseInt(display.innerText) || 0;
-  const step = target > current ? 1 : -1;
-  const interval = setInterval(()=>{
-    if(current == target){ clearInterval(interval); return; }
-    current += step;
-    display.innerText = current;
-  }, 50);
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  let views = localStorage.getItem('profileViews') || 0;
-  document.getElementById('viewCount').innerText = views;
+  const t = document.createElement('div');
+  t.classList.add('trail');
+  t.style.left = e.pageX + 'px';
+  t.style.top = e.pageY + 'px';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 600);
 });
 
-/* Cursor trail */
-document.addEventListener('mousemove', (e) => {
-  const p = document.createElement('div');
-  p.classList.add('trail');
-  p.style.left = e.pageX + 'px';
-  p.style.top = e.pageY + 'px';
-  document.body.appendChild(p);
-  setTimeout(() => { p.remove(); }, 600);
-});
-
-/* Sparkle effect on profile card */
-const profileCard = document.getElementById('profile');
-profileCard.addEventListener('mousemove', (e) => {
-  const sparkle = document.createElement('div');
-  sparkle.classList.add('sparkle');
-  sparkle.style.left = (e.clientX + Math.random()*30-15) + 'px';
-  sparkle.style.top = (e.clientY + Math.random()*30-15) + 'px';
-  document.body.appendChild(sparkle);
-  setTimeout(()=>{ sparkle.remove(); }, 800);
+// Sparkles on profile
+profile.addEventListener('mousemove', e => {
+  const s = document.createElement('div');
+  s.classList.add('sparkle');
+  s.style.left = (e.clientX + Math.random()*30-15) + 'px';
+  s.style.top = (e.clientY + Math.random()*30-15) + 'px';
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 800);
 });
 </script>
 
